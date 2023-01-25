@@ -8,14 +8,13 @@ app.use(
 app.use(express.json());
 require("dotenv").config();
 const cors = require("cors");
-
+app.use(cors())
 
 const usersRouter = require("./routes/usersRouter");
-// const articleRouter = require("./routes/articleRouter.js");
-// const commentsRouter = require("./routes/commentsRouter");
+const articleRouter = require("./routes/articleRouter");
+const commentsRouter = require("./routes/commentsRouter");
 
-app.use("/api", usersRouter);
-/* ,articleRouter,commentsRouter  */
+app.use("/api", usersRouter,articleRouter,commentsRouter );
 
 app.get("/", (req, res) => {
   res.send("Salut Momo").status(200);

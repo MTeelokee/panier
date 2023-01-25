@@ -1,15 +1,14 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
-const articlesSchema = new Schema({
+const commentsSchema = new Schema({
   body: String,
-  author: String,
-  date: { type: Date, default: Date.now() },
-
-  userId: {
-    type: mongoose.Schema.Types.ObjectId,
+  author: { type: mongoose.Schema.Types.ObjectId,
     ref: "Users",
   },
+  date: { type: Date, default: Date.now() },
+
+   
   articleId: {
     type: mongoose.Schema.Types.ObjectId,
     ref: "Articles",
