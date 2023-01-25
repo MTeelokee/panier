@@ -4,10 +4,11 @@ const Schema = mongoose.Schema;
 const articlesSchema = new Schema({
   name: { type: String, required: true },
   brand: { type: String, required: true },
+  price : Number,
   serial: Number,
-  userId: {
+  commentId: {
     type: mongoose.Schema.Types.ObjectId,
-    ref: "Users",
+    ref: "Comment",
   },
 });
 
