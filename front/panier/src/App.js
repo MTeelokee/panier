@@ -7,8 +7,44 @@ function App() {
   const [users, setUsers] = useState([]);
   const [articles, setArticles] = useState([]);
 
-  useEffect(() => {
+
+  // the currentMethod and currentUrl are String types
+  const axiosConfigGet = (currentMethod,currentUrl) => {
     const config = {
+      method: currentMethod,
+      url: currentUrl,
+    };
+  return config
+  }
+  
+
+// function to fetch and set Data from axios
+  const axiosFetch = (axiosConfigGet,setData) =>{
+    axios(axiosConfigGet)
+    .then(function (response) {
+      setData(response.data);
+    })
+    .catch(function (error) {
+      console.log(error);
+    });
+  }
+
+  useEffect(() => {
+    axiosFetch(axiosConfigGet("get","http://localhost:8030/api/users"),setUsers)
+  }, []);
+
+
+
+
+
+
+
+
+
+
+console.log(users)
+
+/*     const config = {
       method: "get",
       url: "http://localhost:8030/api/users",
     };
@@ -16,11 +52,13 @@ function App() {
     axios(config)
       .then(function (response) {
         setUsers(response.data);
-        console.log(response.data);
       })
       .catch(function (error) {
         console.log(error);
       });
+   
+ */
+
 
     /*       const config = {
         method: 'get',
@@ -39,7 +77,7 @@ function App() {
         console.log(error);
       });
  */
-  }, []);
+
 
   console.log(users);
 
